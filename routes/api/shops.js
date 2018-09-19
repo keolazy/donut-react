@@ -5,8 +5,8 @@ const db = require('../../database')
 
 // Put employee middleware here OR just 
 // hard code the routes in this js file.
-const employees = require('./employees');
-router.use('/:id/employees', employees);
+// const employees = require('./employees');
+// router.use('/:id/employees', employees);
 
 
 // shop index

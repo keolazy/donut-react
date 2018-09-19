@@ -38,6 +38,7 @@ exports.up = function (knex, Promise) {
       
 		})
 	}
+
 	function createShopsToDonuts() {
 		return knex.schema.createTable('shops_to_donuts', function (table) {
 			table.increments()
@@ -51,9 +52,9 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
 	return Promise.all([
-		knex.schema.dropTable('shops'),
-		knex.schema.dropTable('employees'),
-		knex.schema.dropTable('donuts'),
-		knex.schema.dropTable('shops_to_donuts')
+		knex.schema.dropTable('shops')
+		// knex.schema.dropTable('employees'),
+		// knex.schema.dropTable('donuts'),
+		// knex.schema.dropTable('shops_to_donuts')
 	])
 }
