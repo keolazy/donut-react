@@ -3,15 +3,12 @@ const bodyParser = require('body-parser')
 const apiRoute = require('./routes/api/index.js')
 
 const app = express()
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
 	extended: true
 }))
 
-// const cors = require('cors')
-// require('dotenv').config()
-
-// app.use(cors())
 app.use('/api', apiRoute)
 
 if (process.env.NODE_ENV === 'production') {
@@ -24,6 +21,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 8000
 app.listen(PORT)
-console.log('Nathans nodemon server is listening on http://localhost:3001. \n The react app should be built and served at http://localhost:3000.')
+console.log('Nathans nodemon server is listening on http://localhost:8000. \n The react app should be built and served at http://localhost:3000.')
