@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
 		.from('shops')
 		.orderBy('id')
 		.then(function(data) {
-			res.send([data])
+			res.send(data)
 		})
 })
 
