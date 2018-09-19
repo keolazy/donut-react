@@ -71,7 +71,7 @@ router.get('/:id/employees/:e_id/edit', (req, res) => {
 // shop employee update
 router.patch('/:id/employees/:e_id', function(req, res) {
 	db('shops')
-		.where({ shop_id: req.params.id, id: req.params.e_id })
+		.where({ id: req.params.e_id })
 		.update(req.body)
 		.returning('*')
 		.then(function(data) {
