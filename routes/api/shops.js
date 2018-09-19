@@ -28,7 +28,17 @@ router.get('/:id', (req, res) =>
 		})
 )
 
-// employes index page
+// shop employee show page 
+router.get('/:id/employees/:e_id', (req, res) => {
+	db('employees')
+	.where({ shop_id: req.params.id, id: req.params.e_id})
+	.first()
+	.then((data) => {
+		res.send(data);
+	})
+})
+
+// shop employees index page
 router.get('/:id/employees', (req, res) => {
 	db('employees')
 	.where({shop_id: req.params.id })
@@ -47,6 +57,8 @@ router.get('/:id/edit', (req, res) =>
 			res.send(data)
 		})
 )
+
+
 
 
 // shop update

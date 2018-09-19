@@ -6,14 +6,14 @@ const db = require('../../database')
 // shop_id vs employee_id
 // // shop employee index page - "/shops/1/employees"
 // employes index page
-router.get('/:id/employees', (req, res) => {
-	db('employees')
-	.where({shop_id: req.params.id })
-	.orderBy('id')
-	.then((data) => {
-		res.send(data);
-	})
-})
+// router.get('/:id/employees', (req, res) => {
+// 	db('employees')
+// 	.where({shop_id: req.params.id })
+// 	.orderBy('id')
+// 	.then((data) => {
+// 		res.send(data);
+// 	})
+// })
 
 // // shop employee show page
 // router.get('/:id', (req, res) => {
