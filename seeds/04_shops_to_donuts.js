@@ -1,44 +1,26 @@
-exports.seed = function(knex, Promise) {
-	return knex('shops_to_donuts').del()
-		.then(function() {
+exports.seed = function (knex, Promise) {
+	const shops = knex('shops').select('id').where('name', 'in', ['Happy Holes', 'Jolly Jellys', 'VooDoo'])
+	const donuts = knex('donuts').whereIn('name', ['Maple', 'Frosted', 'Fiesta', 'Bear Claw'])
+	knex('shops_to_donuts').del()
+	return Promise.all([shops, donuts]).then((results) => {
+			let shopIds = results[0];
+			let donutIds = results[1];
 			return knex('shops_to_donuts').insert([
-				{
-					id: 1,
-					shop_id: 16,
-					donut_id: 21
-				},
-				{
-					id: 2,
-					shop_id: 16,
-					donut_id: 22
-				},
-				{
-					id: 3,
-					shop_id: 16,
-					donut_id: 23
-				},
-				{
-					id: 4,
-					shop_id: 16,
-					donut_id: 24
-				},
-				{
-					id: 5,
-					shop_id: 17,
-					donut_id: 21
-				},
-				{
-					id: 6,
-					shop_id: 17,
-					donut_id: 22
-				},
-				{
-					id: 7,
-					shop_id: 17,
-					donut_id: 23
-				}
-			])
-		})
-	}
-
-
+					{
+							donut_id: donutIds[1].id, shop_id: shopIds[0].id
+					},
+					{
+							donut_id: donutIds[3].id, shop_id: shopIds[0].id
+					},
+					{
+							donut_id: donutIds[2].id, shop_id: shopIds[1].id
+					},
+					{
+							donut_id: donutIds[0].id, shop_id: shopIds[1].id
+					},
+					{
+							donut_id: donutIds[2].id, shop_id: shopIds[0].id
+					},
+			]);
+	});
+};
