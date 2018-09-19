@@ -1,18 +1,19 @@
-// const express = require('express')
-// const router = express.Router()
+const express = require('express')
+const router = express.Router()
 
-// const db = require('../../database')
+const db = require('../../database')
 
-
+// shop_id vs employee_id
 // // shop employee index page - "/shops/1/employees"
-// router.get('/', (req, res) => {
-// 	db.select()
-// 		.from('shops')
-// 		.orderBy('id')
-// 		.then((data) => {
-// 			res.send(data)
-// 		})
-// })
+// employes index page
+router.get('/:id/employees', (req, res) => {
+	db('employees')
+	.where({shop_id: req.params.id })
+	.orderBy('id')
+	.then((data) => {
+		res.send(data);
+	})
+})
 
 // // shop employee show page
 // router.get('/:id', (req, res) => {

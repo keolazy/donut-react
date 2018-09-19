@@ -8,7 +8,6 @@ const db = require('../../database')
 // const employees = require('./employees');
 // router.use('/:id/employees', employees);
 
-
 // shop index
 router.get('/', function(req, res) {
 	db.select()
@@ -28,6 +27,16 @@ router.get('/:id', (req, res) =>
 			res.send(data)
 		})
 )
+
+// employes index page
+router.get('/:id/employees', (req, res) => {
+	db('employees')
+	.where({shop_id: req.params.id })
+	.orderBy('id')
+	.then((data) => {
+		res.send(data);
+	})
+})
 
 // // shop edit
 router.get('/:id/edit', (req, res) =>
