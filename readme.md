@@ -1,6 +1,16 @@
 # Donut Tycoon
 
-Express Knex CRUD /w optional TDD
+## Express Knex CRUD /w optional TDD
+
+#Instructions
+
+After cloning repo,
+`npm install`
+Start up both client and backend servers with
+`npm start`
+
+You should see a navbar with two buttons, "Donut Shops" & "Donuts"
+Begin Navigation by clicking on Donut Shops.
 
 ---
 
