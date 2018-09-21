@@ -9,6 +9,9 @@ After cloning repo,
 Start up both client and backend servers with
 `npm start`
 
+`knex migrate:latest`
+`knex seed:run`
+
 You should see a navbar with two buttons, "Donut Shops" & "Donuts"
 Begin Navigation by clicking on Donut Shops.
 
