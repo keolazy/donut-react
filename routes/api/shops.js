@@ -18,6 +18,8 @@ router.get('/', function(req, res) {
 		})
 })
 
+
+
 // shop show page - GET /shops/1
 router.get('/:id', (req, res) =>
 	db('shops')
@@ -91,6 +93,16 @@ router.get('/new', function(req, res) {
 
 // shop create
 router.post('/', (req, res) => {
+	db.insert(req.body)
+		.returning('*')
+		.into('shops')
+		.then((data) => {
+			res.send(data)
+		})
+})
+
+// NewShop route
+router.get('/new', (req, res) => {
 	db.insert(req.body)
 		.returning('*')
 		.into('shops')
