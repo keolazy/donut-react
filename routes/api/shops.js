@@ -18,8 +18,6 @@ router.get('/', function(req, res) {
 		})
 })
 
-
-
 // shop show page - GET /shops/1
 router.get('/:id', (req, res) =>
 	db('shops')
@@ -30,26 +28,6 @@ router.get('/:id', (req, res) =>
 		})
 )
 
-// shop employee show page - GET /shops/1/employees
-router.get('/:id/employees/:e_id', (req, res) => {
-	db('employees')
-	.where({ shop_id: req.params.id, id: req.params.e_id})
-	.first()
-	.then((data) => {
-		res.send(data);
-	})
-})
-
-// shop employees index page - GET /shops/1/employees
-router.get('/:id/employees', (req, res) => {
-	db('employees')
-	.where({shop_id: req.params.id })
-	.orderBy('id')
-	.then((data) => {
-		res.send(data);
-	})
-})
-
 // shop edit - GET /shops/1/edit - *Used toggle edit CreateEditShop instead of /edit *
 router.get('/:id/edit', (req, res) =>
 	db('shops')
@@ -59,16 +37,6 @@ router.get('/:id/edit', (req, res) =>
 			res.send(data)
 		})
 )
-
-// shop employee edit page - *Used toggle edit CreateEditEmployee instead of /edit *
-router.get('/:id/employees/:e_id/edit', (req, res) => {
-	db('employees')
-	.where({ shop_id: req.params.id, id: req.params.e_id})
-	.first()
-	.then((data) => {
-		res.send(data);
-	})
-})
 
 // shop update - PATCH /shops/1
 router.patch('/:id', function(req, res) {
@@ -122,10 +90,40 @@ router.delete('/:id', function(req,res) {
 		})
 })
 
+// shop employees index page - GET /shops/1/employees
+router.get('/:id/employees', (req, res) => {
+	db('employees')
+	.where({shop_id: req.params.id })
+	.orderBy('id')
+	.then((data) => {
+		res.send(data);
+	})
+})
+
+// shop employee show page 
+router.get('/:shop_id/employees/:e_id', (req, res) => {
+	db('employees')
+	.where({ shop_id: req.params.shop_id, id: req.params.e_id})
+	.first()
+	.then((data) => {
+		res.send(data);
+	})
+})
+
+// shop employee edit page - *Used toggle edit CreateEditEmployee instead of /edit *
+router.get('/:shop_id/employees/:e_id/edit', (req, res) => {
+	db('employees')
+	.where({shop_id: req.params.shop_id, id: req.params.e_id})
+	.first()
+	.then((data) => {
+		res.send(data);
+	})
+})
+
 // *** shop employee update
-router.patch('/:id/employees/:e_id', function(req, res) {
+router.patch('/:shop_id/employees/:e_id', function(req, res) {
 	db('shops')
-		.where({ id: req.params.e_id })
+		.where({ shop_id: req.params.shop_id, id: req.params.e_id })
 		.update(req.body)
 		.returning('*')
 		.then(function(data) {
